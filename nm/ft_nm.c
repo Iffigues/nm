@@ -15,6 +15,10 @@ void getStat(t_elf fle)
 		return (failed("not un indien"));
 	if (!systems(&fle))
 		return (failed("not 64_32"));
+	if (fle.sys == 1)
+		ft_32(fle, 0);
+	if (fle.sys == 2)
+		ft_printf("64 bite");
 }
 
 void	 ft_nm(char *a)

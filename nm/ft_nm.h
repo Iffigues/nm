@@ -7,6 +7,7 @@
 #include <elf.h>
 #include <sys/stat.h>
 #include <sys/mman.h>
+#include "ft_printf/ft_printf.h"
 
 typedef struct		s_elf
 {
@@ -16,11 +17,23 @@ typedef struct		s_elf
 	struct stat	buf;
 	Elf32_Ehdr	elf32;
 	Elf64_Ehdr	elf64;
+	Elf32_Shdr	*shdr;
 }			t_elf;
 
+typedef struct		s_tab
+{
+	char		*name;
+	long int	exa;
+	char 		t;
+	int		vs;
+	int		error;
+	int		end;
+}			t_tab;
+
+void 	ft_32(t_elf fle, int y);
 int	ft_help(void);
 void	ft_nm(char *a);
-size_t	ft_strlen(const char *s);
+void trie(t_tab *e);
 int verif(t_elf *e);
 int endian(t_elf *e);
 int systems(t_elf *e);

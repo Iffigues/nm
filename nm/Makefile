@@ -1,16 +1,19 @@
 NAME=ft_nm
-SRC=main.c ft_help.c ft_nm.c ft_utils.c verif.c
+SRC=main.c ft_help.c ft_nm.c verif.c 32.c trie.c
 OBJ=$(SRC:.c=.o)
 CC=gcc -Wall -Wextra -Werror -m64
 INCLUDE= -I ./
 all:$(NAME)
 $(NAME):$(OBJ)
-	$(CC) $(INCLUDE) $(OBJ) -o $(NAME)
+	@make -C ft_printf/
+	$(CC) $(INCLUDE) $(OBJ) -o $(NAME) ft_printf/libftprintf.a
 %.o:%.c
 	$(CC) $(INCLUDE) -c $< 
 clean:
+	@make clean -C ft_printf/ 
 	rm -f *.o
 fclean:clean
+	@make fclean -C ft_printf/
 	rm -f $(NAME)
 re:fclean all
 .PHONY:all clean fclean re
