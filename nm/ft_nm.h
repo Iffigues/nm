@@ -30,11 +30,12 @@ typedef struct		s_tab
 	int		end;
 }			t_tab;
 
-void 	ft_32(t_elf fle, int y);
-int	ft_help(void);
-void	ft_nm(char *a);
-void trie(t_tab *e);
-int verif(t_elf *e);
-int endian(t_elf *e);
-int systems(t_elf *e);
+void			affiche(t_tab *c);
+void			ft_32(t_elf fle, int y);
+int			ft_help(void);
+void			ft_nm(char *a);
+void			trie(t_tab *e);
+int			verif(t_elf *e);
+int			endian(t_elf *e);
+int			systems(t_elf *e);
 #endif

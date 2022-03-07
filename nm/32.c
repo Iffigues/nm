@@ -115,12 +115,10 @@ static int symb32(t_elf fle, Elf32_Shdr *ph, int y)
 		free(sys);
 		return (-1);
 	}
-	e = nettoie(e, sym, 0);
+	if ((e = nettoie(e, sym, 0)) == NULL)
+		return (-1);
 	trie(e);
-	for (unsigned int i = 0; e[i].end == 1 ; i++) {
-		if (e[i].vs)
-			ft_printf("|%s|\n", e[i].name);
-	}
+	affiche(e);
 	free(sys);
 	free(e);
 	return (y);

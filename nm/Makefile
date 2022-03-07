@@ -1,5 +1,5 @@
 NAME=ft_nm
-SRC=main.c ft_help.c ft_nm.c verif.c 32.c trie.c
+SRC=main.c ft_help.c ft_nm.c verif.c 32.c trie.c aff.c
 OBJ=$(SRC:.c=.o)
 CC=gcc -Wall -Wextra -Werror -m64
 INCLUDE= -I ./

@@ -71,6 +71,4 @@ void trie(t_tab *e)
 		}
 		k++;
 	}
-	for (unsigned long i = 0; i < h ; i++)
-		ft_printf("%s\n", e[i].name);
 }
