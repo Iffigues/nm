@@ -11,6 +11,7 @@ void getStat(t_elf fle)
 {
 	if (!verif(&fle))
 		return (failed("not elf"));
+	if (fle.sys != 3) {
 	if (!endian(&fle))
 		return (failed("not un indien"));
 	if (!systems(&fle))
@@ -19,6 +20,9 @@ void getStat(t_elf fle)
 		ft_32(fle, 0);
 	if (fle.sys == 2)
 		ft_printf("64 bite");
+	} else {
+		ft_printf("alola\n");
+	}
 }
 
 void	 ft_nm(char *a)

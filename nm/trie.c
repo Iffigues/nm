@@ -32,10 +32,11 @@ void swap(t_tab *e, unsigned long j)
 	t_tab k;
 	unsigned long m;
 	unsigned long f;
-
+	int h;
 	m = ge(e[j + 1].name);
 	f = ge(e[j].name);
-	if (place(&e[j + 1].name[m], &e[j].name[f]) < 0)
+	h = place(&e[j + 1].name[m], &e[j].name[f]);
+	if (h < 0 || ((h == 0) && m > 0))
 	{
 		k = e[j];
 		e[j] = e[j + 1];

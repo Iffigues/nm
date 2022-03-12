@@ -25,6 +25,7 @@ t_tab symo(t_elf fle, Elf32_Sym sys, Elf32_Shdr *ph)
 	
 	t.vs = 1;
 	t.error = 0;
+	t.t = letter(fle, &sys);
 	t.exa = sys.st_value;
 	t.name =(char *)fle.ptr + fle.shdr[ph->sh_link].sh_offset + sys.st_name;
 	return t;
