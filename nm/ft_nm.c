@@ -19,7 +19,7 @@ void getStat(t_elf fle)
 	if (fle.sys == 1)
 		ft_32(fle, 0);
 	if (fle.sys == 2)
-		ft_printf("64 bite");
+		ft_64(fle, 0);
 	} else {
 		ft_printf("alola\n");
 	}

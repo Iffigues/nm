@@ -8,7 +8,7 @@ Elf64_Sym *getSym(t_elf fle, Elf64_Shdr *ph, unsigned int y)
 	unsigned int i;
 
 	z = NULL;
-	if ((z = (Elf32_Sym*)malloc(sizeof(Elf32_Sym) * y)) == NULL)
+	if ((z = (Elf64_Sym*)malloc(sizeof(Elf64_Sym) * y)) == NULL)
 			return NULL;
 	i = 0;
 	while (i < y)
@@ -52,7 +52,7 @@ t_tab *getTab(unsigned long sym, Elf64_Sym *sys, t_elf fle, Elf64_Shdr *ph)
 		return NULL;
 	while (l < sym)
 	{
-		a = ELF32_ST_TYPE(sys[l].st_info);
+		a = ELF64_ST_TYPE(sys[l].st_info);
 		t[l].vs = 0;
 		if (a == STT_FUNC || a == STT_OBJECT || a == STT_NOTYPE)
 		{
@@ -102,13 +102,13 @@ t_tab *nettoie(t_tab *e, unsigned long sym, unsigned long h)
 }
 
 
-static int symb32(t_elf fle, Elf32_Shdr *ph, int y)
+static int symb64(t_elf fle, Elf64_Shdr *ph, int y)
 {
 	unsigned int sym;
-	Elf32_Sym *sys; 
+	Elf64_Sym *sys; 
 	t_tab *e;
 
-	sym = ph->sh_size / sizeof(Elf32_Sym);
+	sym = ph->sh_size / sizeof(Elf64_Sym);
 	if ((sys = getSym(fle, ph, sym)) == NULL)
 		return (-1);
 	if ((e = getTab(sym, sys, fle, ph)) == NULL)
@@ -125,42 +125,42 @@ static int symb32(t_elf fle, Elf32_Shdr *ph, int y)
 	return (y);
 }
 
-Elf32_Shdr *getSh( unsigned char *ptr, Elf32_Ehdr *eh)
+Elf64_Shdr *getSh( unsigned char *ptr, Elf64_Ehdr *eh)
 {
 	int i;
-	Elf32_Shdr	*f;
+	Elf64_Shdr	*f;
 
 
 	i = 0;
 	f = NULL;
-	if ((f = (Elf32_Shdr * )malloc(sizeof(Elf32_Shdr) * eh->e_shoff)) == NULL)
+	if ((f = (Elf64_Shdr * )malloc(sizeof(Elf64_Shdr) * eh->e_shoff)) == NULL)
 		return (NULL);
 	while (i < eh->e_shnum)
 	{
-		f[i] = *(Elf32_Shdr *)(ptr + (sizeof(Elf32_Shdr) * i));
+		f[i] = *(Elf64_Shdr *)(ptr + (sizeof(Elf64_Shdr) * i));
 	       i++;	
 	}
 	return f;
 }
 
-void ft_32(t_elf fle, int y)
+void ft_64(t_elf fle, int y)
 {
-	Elf32_Ehdr	*eh;
-	Elf32_Shdr	*ph;
+	Elf64_Ehdr	*eh;
+	Elf64_Shdr	*ph;
 	unsigned char 	*ptr;
 	int 		i;
 
 	i = 0;
-	eh = (Elf32_Ehdr *)fle.ptr;
+	eh = (Elf64_Ehdr *)fle.ptr;
 	ptr = (unsigned char *)fle.ptr + eh->e_shoff;
 	if ((fle.shdr = getSh(ptr, eh)) == NULL)
 			return;
 	while (i < eh->e_shnum)
 	{
-		ph = (Elf32_Shdr *)(ptr + (sizeof(Elf32_Shdr) * i));
+		ph = (Elf64_Shdr *)(ptr + (sizeof(Elf64_Shdr) * i));
 		if (ph->sh_type == SHT_SYMTAB)
 		{
-			y = symb32(fle, ph, y);
+			y = symb64(fle, ph, y);
 			if (y < 0) {
 				free(fle.shdr);
 				return ;

@@ -51,6 +51,7 @@ typedef struct		s_soixante
 	Elf64_Half	st_shndx;
 }			t_soixante;
 
+void ft_64(t_elf fle, int y);
 char			letter(t_elf fle, Elf32_Sym *sys);
 void			affiche(t_tab *c);
 void			ft_32(t_elf fle, int y);
