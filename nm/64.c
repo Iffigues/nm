@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 
-Elf64_Sym *getSym(t_elf fle, Elf64_Shdr *ph, unsigned int y)
+ Elf64_Sym *getSym64(t_elf fle, Elf64_Shdr *ph, unsigned int y)
 {
 	Elf64_Sym *z;
 	unsigned int i;
@@ -19,28 +19,20 @@ Elf64_Sym *getSym(t_elf fle, Elf64_Shdr *ph, unsigned int y)
 	return z;
 }
 
-t_tab symo(t_elf fle, Elf64_Sym sys, Elf64_Shdr *ph)
+t_tab symo64(t_elf fle, Elf64_Sym sys, Elf64_Shdr *ph)
 {
 	t_tab t;
 	
 	t.vs = 1;
 	t.error = 0;
-	t.t = letter(fle, &sys);
+	t.t = sletter(fle, &sys);
+	t.exa = fle.sihdr[sys.st_shndx].sh_addr;
 	t.exa = sys.st_value;
-	t.name =(char *)fle.ptr + fle.shdr[ph->sh_link].sh_offset + sys.st_name;
+	t.name =(char *)fle.ptr + fle.sihdr[ph->sh_link].sh_offset + sys.st_name;
 	return t;
 }
 
-char getChar()
-{
-	char t;
-
-	t = ' ';
-	
-	return t;
-}
-
-t_tab *getTab(unsigned long sym, Elf64_Sym *sys, t_elf fle, Elf64_Shdr *ph)
+t_tab *getTab64(unsigned long sym, Elf64_Sym *sys, t_elf fle, Elf64_Shdr *ph)
 {
 	unsigned long 	l;
 	int		a;
@@ -56,7 +48,7 @@ t_tab *getTab(unsigned long sym, Elf64_Sym *sys, t_elf fle, Elf64_Shdr *ph)
 		t[l].vs = 0;
 		if (a == STT_FUNC || a == STT_OBJECT || a == STT_NOTYPE)
 		{
-			t[l] = symo(fle, sys[l], ph);
+			t[l] = symo64(fle, sys[l], ph);
 			if (t[l].error < 0)
 			{
 				free(t);
@@ -69,7 +61,7 @@ t_tab *getTab(unsigned long sym, Elf64_Sym *sys, t_elf fle, Elf64_Shdr *ph)
 }
 
 
-t_tab *nettoie(t_tab *e, unsigned long sym, unsigned long h)
+t_tab *nettoie64(t_tab *e, unsigned long sym, unsigned long h)
 {
 	t_tab *t;
 	t = NULL;
@@ -102,30 +94,30 @@ t_tab *nettoie(t_tab *e, unsigned long sym, unsigned long h)
 }
 
 
-static int symb64(t_elf fle, Elf64_Shdr *ph, int y)
+int symb64(t_elf fle, Elf64_Shdr *ph, int y)
 {
 	unsigned int sym;
 	Elf64_Sym *sys; 
 	t_tab *e;
 
 	sym = ph->sh_size / sizeof(Elf64_Sym);
-	if ((sys = getSym(fle, ph, sym)) == NULL)
+	if ((sys = getSym64(fle, ph, sym)) == NULL)
 		return (-1);
-	if ((e = getTab(sym, sys, fle, ph)) == NULL)
+	if ((e = getTab64(sym, sys, fle, ph)) == NULL)
 	{
 		free(sys);
 		return (-1);
 	}
-	if ((e = nettoie(e, sym, 0)) == NULL)
+	if ((e = nettoie64(e, sym, 0)) == NULL)
 		return (-1);
 	trie(e);
-	affiche(e);
+	y = affiche(e, 1);
 	free(sys);
 	free(e);
 	return (y);
 }
 
-Elf64_Shdr *getSh( unsigned char *ptr, Elf64_Ehdr *eh)
+ Elf64_Shdr *getSh64( unsigned char *ptr, Elf64_Ehdr *eh)
 {
 	int i;
 	Elf64_Shdr	*f;
@@ -153,8 +145,9 @@ void ft_64(t_elf fle, int y)
 	i = 0;
 	eh = (Elf64_Ehdr *)fle.ptr;
 	ptr = (unsigned char *)fle.ptr + eh->e_shoff;
-	if ((fle.shdr = getSh(ptr, eh)) == NULL)
+	if ((fle.sihdr = getSh64(ptr, eh)) == NULL)
 			return;
+	y = 0;
 	while (i < eh->e_shnum)
 	{
 		ph = (Elf64_Shdr *)(ptr + (sizeof(Elf64_Shdr) * i));
@@ -162,11 +155,13 @@ void ft_64(t_elf fle, int y)
 		{
 			y = symb64(fle, ph, y);
 			if (y < 0) {
-				free(fle.shdr);
+				free(fle.sihdr);
 				return ;
 			}
 		}
 		i++;
 	}
-	free(fle.shdr);
+	if (!y)
+		ft_printf("no sym\n");
+	free(fle.sihdr);
 }

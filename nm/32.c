@@ -119,7 +119,7 @@ static int symb32(t_elf fle, Elf32_Shdr *ph, int y)
 	if ((e = nettoie(e, sym, 0)) == NULL)
 		return (-1);
 	trie(e);
-	affiche(e);
+	y = affiche(e, 0);
 	free(sys);
 	free(e);
 	return (y);
@@ -168,5 +168,7 @@ void ft_32(t_elf fle, int y)
 		}
 		i++;
 	}
+	if (!y)
+		ft_printf("no sym\n");
 	free(fle.shdr);
 }

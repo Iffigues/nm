@@ -12,6 +12,7 @@
 
 typedef struct		s_elf
 {
+	const char 	*name;
 	const char	*ptr;
 	int		endian;
 	int		sys;
@@ -19,6 +20,7 @@ typedef struct		s_elf
 	Elf32_Ehdr	elf32;
 	Elf64_Ehdr	elf64;
 	Elf32_Shdr	*shdr;
+	Elf64_Shdr	*sihdr;
 }			t_elf;
 
 typedef struct		s_tab
@@ -44,16 +46,21 @@ typedef struct		s_trente
 
 typedef struct		s_soixante
 {
+	char		c;
 	int		bind;
-	uint64_t	sh_flags;
-	uint64_t	sh_type;
-	unsigned char	st_info;
-	Elf64_Half	st_shndx;
+	long int	ltype;
+	uint64_t	flags;
+	uint64_t	type;
+	unsigned char	info;
+	Elf64_Half	shndx;
 }			t_soixante;
 
-void ft_64(t_elf fle, int y);
+void			getStat(t_elf fle);
+void 			ar(t_elf fle);
+void 			ft_64(t_elf fle, int y);
+char 			sletter(t_elf fle, Elf64_Sym *sys);
 char			letter(t_elf fle, Elf32_Sym *sys);
-void			affiche(t_tab *c);
+int			affiche(t_tab *c, int ii);
 void			ft_32(t_elf fle, int y);
 int			ft_help(void);
 void			ft_nm(char *a);
@@ -61,4 +68,5 @@ void			trie(t_tab *e);
 int			verif(t_elf *e);
 int			endian(t_elf *e);
 int			systems(t_elf *e);
+int	ft_strncmp(const char *s1, const  char *s2, size_t n);
 #endif
