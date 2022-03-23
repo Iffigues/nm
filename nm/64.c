@@ -14,6 +14,11 @@
 	while (i < y)
 	{
 		Elf64_Sym p  = *(Elf64_Sym*)(fle.ptr + ph->sh_offset + (sizeof(Elf64_Sym) * i));  
+		if (ph[ph->sh_link].sh_offset + p.st_name > fle.len)
+		{
+			free(z);
+			return NULL;
+		}
 		z[i++] = p;
 	}
 	return z;
@@ -144,6 +149,10 @@ void ft_64(t_elf fle, int y)
 
 	i = 0;
 	eh = (Elf64_Ehdr *)fle.ptr;
+	if ((eh->e_shoff + (sizeof(Elf64_Shdr) * eh->e_shnum)) > fle.len)
+	{
+		return ;
+	}
 	ptr = (unsigned char *)fle.ptr + eh->e_shoff;
 	if ((fle.sihdr = getSh64(ptr, eh)) == NULL)
 			return;

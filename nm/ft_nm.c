@@ -40,6 +40,7 @@ void	 ft_nm(char *a)
 	if (fle.ptr == MAP_FAILED)
 		return failed("mmap failed");
 	fle.name = a;
+	fle.len = fle.buf.st_size;
 	getStat(fle);
 	if (munmap((void *)fle.ptr, fle.buf.st_size) < 0)
 		failed("munmap failed");

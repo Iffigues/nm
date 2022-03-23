@@ -50,11 +50,24 @@ int getElf(const char *ptr) {
 
 }
 
-void grab(const char *ptr) {
+void grab(const char *ptr, t_elf fle) {
 	t_elf g;
 
 	g.ptr = ptr;
+	g.len = fle.len;
 	getStat(g);
+}
+
+void affer(char *t) 
+{
+	int i;
+
+	i = 0;
+	write(1, "\n" , 1);
+	while (t[i] && t[i] != '/')
+		i++;
+	write(1, t, i);
+	write(1, ":\n", 2);
 }
 
 void ar(t_elf fle)
@@ -82,10 +95,10 @@ void ar(t_elf fle)
 		}
 		if (i) {
 			if (header->ar_name[0] == '/')
-				printf("%s\n", &str[ft_atoi(&header->ar_name[1])]);
+				affer(&str[ft_atoi(&header->ar_name[1])]);
 			else	
-				printf("%s\n", header->ar_name);
-			grab(fle.ptr + getElf(fle.ptr));
+				affer(header->ar_name);
+			grab(fle.ptr + getElf(fle.ptr), fle);
 		}
 		fle.ptr += ft_atoi(header->ar_size) + sizeof(struct ar_hdr);
 	}

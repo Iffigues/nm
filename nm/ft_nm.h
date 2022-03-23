@@ -17,6 +17,7 @@ typedef struct		s_elf
 	int		endian;
 	int		sys;
 	struct stat	buf;
+	size_t		len;
 	Elf32_Ehdr	elf32;
 	Elf64_Ehdr	elf64;
 	Elf32_Shdr	*shdr;

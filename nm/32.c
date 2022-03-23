@@ -13,7 +13,12 @@ Elf32_Sym *getSym(t_elf fle, Elf32_Shdr *ph, unsigned int y)
 	i = 0;
 	while (i < y)
 	{
-		Elf32_Sym p  = *(Elf32_Sym*)(fle.ptr + ph->sh_offset + (sizeof(Elf32_Sym) * i));  
+		Elf32_Sym p  = *(Elf32_Sym*)(fle.ptr + ph->sh_offset + (sizeof(Elf32_Sym) * i)); 
+		if (ph[ph->sh_link].sh_offset + p.st_name > fle.len)
+		{
+			free(z);
+			return NULL;
+		}
 		z[i++] = p;
 	}
 	return z;
@@ -152,6 +157,10 @@ void ft_32(t_elf fle, int y)
 
 	i = 0;
 	eh = (Elf32_Ehdr *)fle.ptr;
+	if ((eh->e_shoff + (sizeof(Elf32_Shdr) * eh->e_shnum)) > fle.len)
+	{
+		return ;
+	}
 	ptr = (unsigned char *)fle.ptr + eh->e_shoff;
 	if ((fle.shdr = getSh(ptr, eh)) == NULL)
 			return;
