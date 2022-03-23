@@ -56,6 +56,14 @@ typedef struct		s_soixante
 	Elf64_Half	shndx;
 }			t_soixante;
 
+Elf32_Sym		*getSym(t_elf fle, Elf32_Shdr *ph, unsigned int y);
+t_tab			symo(t_elf fle, Elf32_Sym sys, Elf32_Shdr *ph);
+t_tab			*getTab(unsigned long sym, Elf32_Sym *sys, t_elf fle, Elf32_Shdr *ph);
+t_tab			*nettoie(t_tab *e, unsigned long sym, unsigned long h);
+Elf64_Sym *getSym64(t_elf fle, Elf64_Shdr *ph, unsigned int y);
+t_tab symo64(t_elf fle, Elf64_Sym sys, Elf64_Shdr *ph);
+t_tab *getTab64(unsigned long sym, Elf64_Sym *sys, t_elf fle, Elf64_Shdr *ph);
+t_tab *nettoie64(t_tab *e, unsigned long sym, unsigned long h);
 void			getStat(t_elf fle);
 void 			ar(t_elf fle);
 void 			ft_64(t_elf fle, int y);
@@ -69,5 +77,5 @@ void			trie(t_tab *e);
 int			verif(t_elf *e);
 int			endian(t_elf *e);
 int			systems(t_elf *e);
-int	ft_strncmp(const char *s1, const  char *s2, size_t n);
+int			ft_strncmp(const char *s1, const  char *s2, size_t n);
 #endif
