@@ -12,7 +12,7 @@ Elf32_Sym	*getSym(t_elf fle, Elf32_Shdr *ph, unsigned int y)
 	while (i < y)
 	{
 		Elf32_Sym p  = *(Elf32_Sym*)(fle.ptr + ph->sh_offset + (sizeof(Elf32_Sym) * i));
-		if (ph[ph->sh_link].sh_offset + p.st_name > fle.len)
+		if (fle.shdr[ph->sh_link].sh_offset + p.st_name > fle.len)
 		{
 			free(z);
 			return NULL;

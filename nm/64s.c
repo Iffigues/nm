@@ -12,7 +12,7 @@ Elf64_Sym *getSym64(t_elf fle, Elf64_Shdr *ph, unsigned int y)
 	while (i < y)
 	{
 		Elf64_Sym p  = *(Elf64_Sym*)(fle.ptr + ph->sh_offset + (sizeof(Elf64_Sym) * i));
-		if (ph[ph->sh_link].sh_offset + p.st_name > fle.len)
+		if (fle.sihdr[ph->sh_link].sh_offset + p.st_name > fle.len)
 		{
 			free(z);
 			return NULL;
