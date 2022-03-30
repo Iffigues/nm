@@ -26,11 +26,17 @@ char	*ft_strdup(const char *s1)
 }
 
 char  *namer(char *p) {
-	int i = 0;
+	int i;
+	char *r;
+
+	i = 0;
 	while (p[i] && p[i] != '\n')
 		i++;
 	i++;
-	char *r = ft_strdup(&p[i]);
+	if (p[i])
+		r = ft_strdup(&p[i]);
+	else
+		return (NULL);
 	i = 0;
 	while (r[i])
 	{
@@ -70,38 +76,46 @@ void affer(char *t)
 	write(1, ":\n", 2);
 }
 
-void ar(t_elf fle)
+static void fr(char *str)
 {
-	int i = 0;
-	char *str;
-	struct ar_hdr	*header;
+	if (str != NULL)
+		free(str);
+}
 
-	str = NULL;	
-	fle.ptr += SARMAG;
-	header = (struct ar_hdr *)fle.ptr;
-	fle.ptr += ft_atoi(header->ar_size) + sizeof(struct ar_hdr);
+static void wily(t_elf fle, int i, char *str, struct ar_hdr *header)
+{
 	while (fle.ptr)
 	{
 		header = (struct ar_hdr *)fle.ptr;
 		if (ft_atoi(header->ar_size) <= 0)
-			return ;
+			return (fr(str));
 		if (i == 0  && ft_strncmp(header->ar_name, "//", 2) == 0) {
 			str = namer(header->ar_name);
+			if (str == NULL)
+				return ;
 			i = 0;
 		}
-		else 
-		{
+		else {
 			i = 1;
-		}
-		if (i) {
 			if (header->ar_name[0] == '/')
 				affer(&str[ft_atoi(&header->ar_name[1])]);
-			else	
+			else
 				affer(header->ar_name);
 			grab(fle.ptr + getElf(fle.ptr), fle);
 		}
 		fle.ptr += ft_atoi(header->ar_size) + sizeof(struct ar_hdr);
 	}
-	if (str != NULL)
-		free(str);
+	fr(str);
+}
+
+void ar(t_elf fle, int i)
+{
+	char *str;
+	struct ar_hdr	*header;
+
+	str = NULL;
+	fle.ptr += SARMAG;
+	header = (struct ar_hdr *)fle.ptr;
+	fle.ptr += ft_atoi(header->ar_size) + sizeof(struct ar_hdr);
+	wily(fle, i, str, header);
 }

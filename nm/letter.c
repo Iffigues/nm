@@ -1,6 +1,6 @@
 #include "ft_nm.h"
 
-t_trente	gettyper(t_elf fle, Elf32_Sym *sys)
+static t_trente	gettyper(t_elf fle, Elf32_Sym *sys)
 {
 	t_trente	t;
 
@@ -14,26 +14,16 @@ t_trente	gettyper(t_elf fle, Elf32_Sym *sys)
 	return (t);
 }
 
-char	alphe(char e, char t, int i)
+static char	alphe(char e, char t, int i)
 {
 	if (i)
 		return (t);
 	return (e);
 }
 
-char	letter(t_elf fle, Elf32_Sym *sys)
+static char	choose(t_trente t)
 {
-	t_trente	t;
-
-	t = gettyper(fle, sys);
-	if (t.bind == STB_WEAK)
-	{
-		if (t.ltype == STT_OBJECT)
-			t.c = alphe('V', 'v', t.shndx == SHN_UNDEF);
-		else
-			t.c = alphe('W', 'w', t.shndx == SHN_UNDEF);
-	}
-	else if (t.shndx == SHN_UNDEF)
+	if (t.shndx == SHN_UNDEF)
 		t.c = alphe('U', 'u', t.bind == STB_LOCAL);
 	else if (t.shndx == SHN_ABS)
 		t.c = alphe('A', 'a', t.bind == STB_LOCAL);
@@ -51,5 +41,22 @@ char	letter(t_elf fle, Elf32_Sym *sys)
 		t.c = alphe('T', 't', t.bind == STB_LOCAL);
 	else if (t.type == SHT_INIT_ARRAY || t.type == SHT_FINI_ARRAY)
 		t.c = alphe('t', 't', t.bind == STB_LOCAL);
+	return (t.c);
+}
+
+char	letter(t_elf fle, Elf32_Sym *sys)
+{
+	t_trente	t;
+
+	t = gettyper(fle, sys);
+	if (t.bind == STB_WEAK)
+	{
+		if (t.ltype == STT_OBJECT)
+			t.c = alphe('V', 'v', t.shndx == SHN_UNDEF);
+		else
+			t.c = alphe('W', 'w', t.shndx == SHN_UNDEF);
+	}
+	else
+		t.c = choose(t);
 	return (t.c);
 }

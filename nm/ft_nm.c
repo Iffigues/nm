@@ -23,7 +23,7 @@ void getStat(t_elf fle)
 			ft_64(fle, 0);
 		}
 	} else {
-		ar(fle);
+		ar(fle, 0);
 	}
 }
 

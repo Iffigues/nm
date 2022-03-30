@@ -1,6 +1,6 @@
 #include "ft_nm.h"
 
-Elf32_Sym	*getSym(t_elf fle, Elf32_Shdr *ph, unsigned int y)
+Elf32_Sym	*getsym(t_elf fle, Elf32_Shdr *ph, unsigned int y)
 {
 	Elf32_Sym	*z;
 	unsigned int	i;
@@ -34,7 +34,7 @@ t_tab	symo(t_elf fle, Elf32_Sym sys, Elf32_Shdr *ph)
 	return t;
 }
 
-t_tab	*getTab(unsigned long sym, Elf32_Sym *sys, t_elf fle, Elf32_Shdr *ph)
+t_tab	*gettab(unsigned long sym, Elf32_Sym *sys, t_elf fle, Elf32_Shdr *ph)
 {
 	unsigned long	l;
 	int		a;
@@ -63,6 +63,13 @@ t_tab	*getTab(unsigned long sym, Elf32_Sym *sys, t_elf fle, Elf32_Shdr *ph)
 }
 
 
+static t_tab	*fi(t_tab *t, unsigned long x, t_tab *e)
+{
+	t[x].end = 1;
+	free(e);
+	return (t);
+}
+
 t_tab	*nettoie(t_tab *e, unsigned long sym, unsigned long h)
 {
 	t_tab	*t;
@@ -77,9 +84,8 @@ t_tab	*nettoie(t_tab *e, unsigned long sym, unsigned long h)
 		h++;
 	}
 	if ((t = (t_tab *)malloc((sizeof(t_tab) * (x + 1)))) == NULL)
-		return NULL;
-	h = 0;
-	x = 0;
+		return (NULL);
+	zeze(&x, &h);
 	while (h < sym)
 	{
 		if (e[h].vs && ft_strlen(e[h].name) > 0)
@@ -90,7 +96,5 @@ t_tab	*nettoie(t_tab *e, unsigned long sym, unsigned long h)
 		}
 		h++;
 	}
-	t[x].end = 1;
-	free(e);
-	return t;
+	return (fi(t, x, e));
 }

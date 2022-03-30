@@ -1,6 +1,6 @@
 #include "ft_nm.h"
 
-Elf64_Sym *getSym64(t_elf fle, Elf64_Shdr *ph, unsigned int y)
+Elf64_Sym *getsym64(t_elf fle, Elf64_Shdr *ph, unsigned int y)
 {
 	Elf64_Sym *z;
 	unsigned int i;
@@ -35,7 +35,7 @@ t_tab symo64(t_elf fle, Elf64_Sym sys, Elf64_Shdr *ph)
 	return t;
 }
 
-t_tab *getTab64(unsigned long sym, Elf64_Sym *sys, t_elf fle, Elf64_Shdr *ph)
+t_tab *gettab64(unsigned long sym, Elf64_Sym *sys, t_elf fle, Elf64_Shdr *ph)
 {
 	unsigned long 	l;
 	int		a;
@@ -63,6 +63,12 @@ t_tab *getTab64(unsigned long sym, Elf64_Sym *sys, t_elf fle, Elf64_Shdr *ph)
 	return t;
 }
 
+static	t_tab *fi(t_tab *t, unsigned long x, t_tab *e)
+{
+	t[x].end = 1;
+	free(e);
+	return (t);
+}
 
 t_tab *nettoie64(t_tab *e, unsigned long sym, unsigned long h)
 {
@@ -79,8 +85,7 @@ t_tab *nettoie64(t_tab *e, unsigned long sym, unsigned long h)
 	}
 	if ((t = (t_tab *)malloc((sizeof(t_tab) * (x + 1)))) == NULL)
 		return NULL;
-	h = 0;
-	x = 0;
+	zeze(&x, &h);
 	while (h < sym)
 	{
 		if (e[h].vs && ft_strlen(e[h].name) > 0)
@@ -90,8 +95,6 @@ t_tab *nettoie64(t_tab *e, unsigned long sym, unsigned long h)
 			x++;
 		}
 		h++;
-	}
-	t[x].end = 1;
-	free(e);
-	return t;
+	};
+	return (fi(t, x, e));
 }
