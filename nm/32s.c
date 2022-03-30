@@ -1,25 +1,38 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   32s.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bordenoy <bordenoy@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/31 00:43:41 by bordenoy          #+#    #+#             */
+/*   Updated: 2022/03/31 00:53:01 by bordenoy         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_nm.h"
 
 Elf32_Sym	*getsym(t_elf fle, Elf32_Shdr *ph, unsigned int y)
 {
 	Elf32_Sym	*z;
+	Elf32_Sym	p;
 	unsigned int	i;
 
-	z = NULL;
-	if ((z = (Elf32_Sym*)malloc(sizeof(Elf32_Sym) * y)) == NULL)
-			return NULL;
+	z = (Elf32_Sym *)malloc(sizeof(Elf32_Sym) * y);
+	if (z == NULL)
+		return (NULL);
 	i = 0;
 	while (i < y)
 	{
-		Elf32_Sym p  = *(Elf32_Sym*)(fle.ptr + ph->sh_offset + (sizeof(Elf32_Sym) * i));
+		p = *(Elf32_Sym *)(fle.ptr + ph->sh_offset + (sizeof(Elf32_Sym) * i));
 		if (fle.shdr[ph->sh_link].sh_offset + p.st_name > fle.len)
 		{
 			free(z);
-			return NULL;
+			return (NULL);
 		}
 		z[i++] = p;
 	}
-	return z;
+	return (z);
 }
 
 t_tab	symo(t_elf fle, Elf32_Sym sys, Elf32_Shdr *ph)
@@ -30,20 +43,20 @@ t_tab	symo(t_elf fle, Elf32_Sym sys, Elf32_Shdr *ph)
 	t.error = 0;
 	t.t = letter(fle, &sys);
 	t.exa = sys.st_value;
-	t.name =(char *)fle.ptr + fle.shdr[ph->sh_link].sh_offset + sys.st_name;
-	return t;
+	t.name = (char *)fle.ptr + fle.shdr[ph->sh_link].sh_offset + sys.st_name;
+	return (t);
 }
 
 t_tab	*gettab(unsigned long sym, Elf32_Sym *sys, t_elf fle, Elf32_Shdr *ph)
 {
 	unsigned long	l;
-	int		a;
-	t_tab		*t;
+	int	a;
+	t_tab	*t;
 
 	l = 0;
-	t = NULL;
-	if ((t = (t_tab *)malloc(sizeof(t_tab) * sym)) == NULL)
-		return NULL;
+	t = (t_tab *)malloc(sizeof(t_tab) * sym);
+	if (t == NULL)
+		return (NULL);
 	while (l < sym)
 	{
 		a = ELF32_ST_TYPE(sys[l].st_info);
@@ -54,14 +67,13 @@ t_tab	*gettab(unsigned long sym, Elf32_Sym *sys, t_elf fle, Elf32_Shdr *ph)
 			if (t[l].error < 0)
 			{
 				free(t);
-				return NULL;
+				return (NULL);
 			}
 		}
 		l++;
 	}
-	return t;
+	return (t);
 }
-
 
 static t_tab	*fi(t_tab *t, unsigned long x, t_tab *e)
 {
@@ -75,7 +87,6 @@ t_tab	*nettoie(t_tab *e, unsigned long sym, unsigned long h)
 	t_tab	*t;
 	unsigned long	x;
 
-	t = NULL;
 	x = 0;
 	while (h < sym)
 	{
@@ -83,7 +94,8 @@ t_tab	*nettoie(t_tab *e, unsigned long sym, unsigned long h)
 			x++;
 		h++;
 	}
-	if ((t = (t_tab *)malloc((sizeof(t_tab) * (x + 1)))) == NULL)
+	t = (t_tab *)malloc(sizeof(t_tab) * (x + 1));
+	if (t == NULL)
 		return (NULL);
 	zeze(&x, &h);
 	while (h < sym)

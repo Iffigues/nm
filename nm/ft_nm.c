@@ -7,7 +7,7 @@ void failed(char *a)
 }
 
 
-void getStat(t_elf fle)
+void getstat(t_elf fle)
 {
 	if (!verif(&fle))
 		return (failed("not elf"));
@@ -41,7 +41,7 @@ void	 ft_nm(char *a)
 		return failed("mmap failed");
 	fle.name = a;
 	fle.len = fle.buf.st_size;
-	getStat(fle);
+	getstat(fle);
 	if (munmap((void *)fle.ptr, fle.buf.st_size) < 0)
 		failed("munmap failed");
 	close(fd);

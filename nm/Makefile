@@ -1,5 +1,5 @@
 NAME=ft_nm
-SRC=main.c ft_help.c ft_nm.c verif.c 32.c trie.c aff.c letter.c 64.c sletter.c ar.c 32s.c 64s.c utils.c tries.c
+SRC=main.c ft_help.c ft_nm.c verif.c 32.c trie.c aff.c letter.c 64.c sletter.c ar.c 32s.c 64s.c utils.c tries.c ars.c
 OBJ=$(SRC:.c=.o)
 CC=gcc -g -fsanitize=address -Wall -Wextra -Werror -m64
 INCLUDE= -I ./
