@@ -1,18 +1,30 @@
-#ifndef FT_SELECT_H
-# define FT_SELECT_H
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_nm.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bordenoy <bordenoy@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/31 01:12:48 by bordenoy          #+#    #+#             */
+/*   Updated: 2022/03/31 01:24:20 by bordenoy         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-#include <stdlib.h>  
-#include <unistd.h>
-#include <fcntl.h>
-#include <elf.h>
-#include <ar.h>
-#include <sys/stat.h>
-#include <sys/mman.h>
-#include "ft_printf/ft_printf.h"
+#ifndef FT_NM_H
+# define FT_NM_H
 
-typedef struct		s_elf
+# include <stdlib.h>  
+# include <unistd.h>
+# include <fcntl.h>
+# include <elf.h>
+# include <ar.h>
+# include <sys/stat.h>
+# include <sys/mman.h>
+# include "ft_printf/ft_printf.h"
+
+typedef struct s_elf
 {
-	const char 	*name;
+	const char	*name;
 	const char	*ptr;
 	int		endian;
 	int		sys;
@@ -22,19 +34,19 @@ typedef struct		s_elf
 	Elf64_Ehdr	elf64;
 	Elf32_Shdr	*shdr;
 	Elf64_Shdr	*sihdr;
-}			t_elf;
+}	t_elf;
 
-typedef struct		s_tab
+typedef struct s_tab
 {
 	char		*name;
 	long int	exa;
-	char 		t;
+	char		t;
 	int		vs;
 	int		error;
 	int		end;
 }			t_tab;
 
-typedef struct		s_trente
+typedef struct s_trente
 {
 	char		c;
 	int		bind;
@@ -45,7 +57,7 @@ typedef struct		s_trente
 	Elf32_Half	shndx;
 }			t_trente;
 
-typedef struct		s_soixante
+typedef struct s_soixante
 {
 	char		c;
 	int		bind;
@@ -69,16 +81,17 @@ unsigned long		getsize(t_tab *e);
 void			zeze(unsigned long *a, unsigned long *h);
 Elf32_Sym		*getsym(t_elf fle, Elf32_Shdr *ph, unsigned int y);
 t_tab			symo(t_elf fle, Elf32_Sym sys, Elf32_Shdr *ph);
-t_tab			*gettab(unsigned long sym, Elf32_Sym *sys, t_elf fle, Elf32_Shdr *ph);
+t_tab			*gettab(unsigned long s, Elf32_Sym *i, t_elf f, Elf32_Shdr *p);
 t_tab			*nettoie(t_tab *e, unsigned long sym, unsigned long h);
 Elf64_Sym		*getsym64(t_elf fle, Elf64_Shdr *ph, unsigned int y);
 t_tab			symo64(t_elf fle, Elf64_Sym sys, Elf64_Shdr *ph);
-t_tab			*gettab64(unsigned long sym, Elf64_Sym *sys, t_elf fle, Elf64_Shdr *ph);
+t_tab			*gettab64(unsigned long s, Elf64_Sym *i, t_elf f,
+					Elf64_Shdr *p);
 t_tab			*nettoie64(t_tab *e, unsigned long sym, unsigned long h);
 void			getstat(t_elf fle);
-void 			ar(t_elf fle, int i);
-void 			ft_64(t_elf fle, int y);
-char 			sletter(t_elf fle, Elf64_Sym *sys);
+void			ar(t_elf fle, int i);
+void			ft_64(t_elf fle, int y);
+char			sletter(t_elf fle, Elf64_Sym *sys);
 char			letter(t_elf fle, Elf32_Sym *sys);
 int			affiche(t_tab *c, int ii);
 void			ft_32(t_elf fle, int y);
@@ -88,5 +101,5 @@ void			trie(t_tab *e);
 int			verif(t_elf *e);
 int			endian(t_elf *e);
 int			systems(t_elf *e);
-int			ft_strncmp(const char *s1, const  char *s2, size_t n);
+int			ft_strncmp(const char *s1, const char *s2, size_t n);
 #endif
