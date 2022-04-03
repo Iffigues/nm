@@ -6,24 +6,24 @@
 /*   By: bordenoy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/10 20:09:05 by bordenoy          #+#    #+#             */
-/*   Updated: 2019/02/25 16:45:42 by bordenoy         ###   ########.fr       */
+/*   Updated: 2022/04/03 19:25:25 by bordenoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		ft_vsprintf(t_gob *opt, const char *format, va_list ap)
+int	ft_vsprintf(t_gob *opt, const char *format, va_list ap)
 {
 	while (*format)
 	{
 		if ((*format) == '%' && *format++)
 		{
 			opt->opt = getopts(format);
-			format += par(format, &opt->opt, ap);
+			format += par(format, &opt->opt, ap, 0);
 			format += taille(format, &opt->opt);
 			if (opt->opt.largeur < 0)
 			{
-				opt->opt.largeur = ABS(opt->opt.largeur);
+				opt->opt.largeur = abss(opt->opt.largeur);
 				opt->opt.opt = opt->opt.opt | 4;
 			}
 			if (*format)
@@ -36,7 +36,7 @@ int		ft_vsprintf(t_gob *opt, const char *format, va_list ap)
 	return (end(*opt));
 }
 
-int		ft_printf(const char *format, ...)
+int	ft_printf(const char *format, ...)
 {
 	int		a;
 	va_list	arg;

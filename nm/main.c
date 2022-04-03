@@ -6,7 +6,7 @@
 /*   By: bordenoy <bordenoy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 11:38:54 by bordenoy          #+#    #+#             */
-/*   Updated: 2022/03/26 11:38:58 by bordenoy         ###   ########.fr       */
+/*   Updated: 2022/03/31 22:36:03 by bordenoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,10 @@
 int	main(int argc, char **argv)
 {
 	if (argc == 1)
-		return (ft_help());
+	{
+		ft_nm("./a.out");
+		return (EXIT_SUCCESS);
+	}
 	if (argc == 2)
 		while (*++argv)
 			ft_nm(*argv);

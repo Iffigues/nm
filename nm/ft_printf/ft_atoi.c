@@ -6,7 +6,7 @@
 /*   By: bordenoy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/08 17:03:37 by bordenoy          #+#    #+#             */
-/*   Updated: 2019/02/09 18:24:14 by bordenoy         ###   ########.fr       */
+/*   Updated: 2022/04/03 19:44:16 by bordenoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ static	int	good(int a, char c, int d)
 	return (1);
 }
 
-int			ft_atoi(const char *str)
+int	ft_atoi(const char *str)
 {
-	int nbr;
-	int s;
+	int	nbr;
+	int	s;
 
 	s = 1;
 	nbr = 0;

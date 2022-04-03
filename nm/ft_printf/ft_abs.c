@@ -1,19 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_help.c                                          :+:      :+:    :+:   */
+/*   ft_abs.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bordenoy <bordenoy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/31 22:32:25 by bordenoy          #+#    #+#             */
-/*   Updated: 2022/03/31 22:33:02 by bordenoy         ###   ########.fr       */
+/*   Created: 2022/04/03 18:26:56 by bordenoy          #+#    #+#             */
+/*   Updated: 2022/04/03 18:28:29 by bordenoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_nm.h"
+#include "ft_printf.h"
 
-int	ft_help()
+long	abss(long i)
 {
-	ft_printf("./ft_nm <arg>");
-	return (EXIT_FAILURE);
+	if (i < 0)
+		return (i * -i);
+	return (i);
 }

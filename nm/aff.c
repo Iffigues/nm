@@ -6,7 +6,7 @@
 /*   By: bordenoy <bordenoy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 11:39:21 by bordenoy          #+#    #+#             */
-/*   Updated: 2022/03/26 11:39:28 by bordenoy         ###   ########.fr       */
+/*   Updated: 2022/04/03 18:15:15 by bordenoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	affiche(t_tab *c, int ii)
 	{
 		if (!ii)
 		{
-			if (c[i].t != 'v' && c[i].t != 'w' && c[i].t != 'U')
+			if (c[i].t != 'v' && c[i].t != 'w' && c[i].t != 'U') 
 				ft_printf("%08x %c %s\n", c[i].exa, c[i].t, c[i].name);
 			else
 				ft_printf("%8c %c %s\n", ' ', c[i].t, c[i].name);

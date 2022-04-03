@@ -6,7 +6,7 @@
 #    By: bordenoy <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/08 12:37:32 by bordenoy          #+#    #+#              #
-#    Updated: 2019/02/21 15:47:19 by bordenoy         ###   ########.fr        #
+#    Updated: 2022/04/03 19:07:26 by bordenoy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,9 @@ LDLIBS=-lft
 
 HDDIRS=-I 
 
-SRC=	ft_bzero.c					\
+SRC=		ft_bzero.c					\
+		haha.c						\
+		ft_abs.c					\
 		ft_memset.c					\
  		ft_putnbr.c					\
 		ft_atoi.c					\
@@ -33,12 +35,12 @@ SRC=	ft_bzero.c					\
 		ft_float.c					\
 		ft_pour.c					\
 		ft_rot.c					\
-		ft_floater.c				\
+		ft_floater.c					\
 		ft_printf.c					\
-		ft_putchar.c				\
+		ft_putchar.c					\
 		ft_nan.c					\
 		ft_ret.c					\
-		ft_putnbr_base.c			\
+		ft_putnbr_base.c				\
    		outil.c						\
 		rat.c						\
 		ft_println.c

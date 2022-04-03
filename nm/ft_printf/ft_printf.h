@@ -6,7 +6,7 @@
 /*   By: bordenoy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/05 16:28:48 by bordenoy          #+#    #+#             */
-/*   Updated: 2019/02/25 16:44:55 by bordenoy         ###   ########.fr       */
+/*   Updated: 2022/04/03 19:28:42 by bordenoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@
 # define BUFF_SIZE 55
 # define SIZE_OPT 12
 
-//# define ABS(Value)	( (Value) < (0) ? (~(Value)+1) : (Value))
-#define ABS(x) ((x))
 typedef struct			s_opt
 {
 	unsigned int		opt : 5;
@@ -48,6 +46,12 @@ typedef	struct			s_printf
 	void				(*ptf)(va_list ap, t_gob);
 }						t_printf;
 
+int					plt(t_opt *opt, int i);
+int					ptt(t_opt *opt, t_ch ch, int c, const char *f);
+int					pft(t_opt *opt, const char *f, int c);
+int					pst(t_opt *opt, va_list ap);
+int					prt(t_opt *opt, va_list ap);
+long					abss(long i);
 t_gob					ft_ar(t_gob opt, unsigned long long b);
 void					aff_rest(long long a, t_gob opt);
 void					ft_nulls(t_gob opt);
@@ -73,7 +77,7 @@ void					*ft_memset(void *b, int c, size_t len);
 void					ft_bzero(void *s, size_t n);
 int						end(t_gob opt);
 int						ft_atoi(const char *str);
-int						par(const char *format, t_opt *opt, va_list ap);
+int						par(const char *format, t_opt *opt, va_list ap, int c);
 void					ft_putnbr(va_list nbr, t_gob opt);
 void					ft_putnbr_unsigned(va_list nbr, t_gob opt);
 void					ft_putster(va_list nbr, t_gob opt);
