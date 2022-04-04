@@ -6,7 +6,7 @@
 /*   By: bordenoy <bordenoy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 00:23:20 by bordenoy          #+#    #+#             */
-/*   Updated: 2022/03/31 00:42:30 by bordenoy         ###   ########.fr       */
+/*   Updated: 2022/04/03 20:33:44 by bordenoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static void	wily(t_elf fle, int i, char *str, struct ar_hdr *header)
 
 void	ar(t_elf fle, int i)
 {
-	char	*str;
+	char			*str;
 	struct ar_hdr	*header;
 
 	str = NULL;

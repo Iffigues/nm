@@ -6,7 +6,7 @@
 /*   By: bordenoy <bordenoy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 01:12:48 by bordenoy          #+#    #+#             */
-/*   Updated: 2022/03/31 01:24:20 by bordenoy         ###   ########.fr       */
+/*   Updated: 2022/04/04 14:39:56 by bordenoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ typedef struct s_elf
 {
 	const char	*name;
 	const char	*ptr;
-	int		endian;
-	int		sys;
+	int			endian;
+	int			sys;
 	struct stat	buf;
 	size_t		len;
 	Elf32_Ehdr	elf32;
@@ -41,43 +41,43 @@ typedef struct s_tab
 	char		*name;
 	long int	exa;
 	char		t;
-	int		vs;
-	int		error;
-	int		end;
+	int			vs;
+	int			error;
+	int			end;
 }			t_tab;
 
 typedef struct s_trente
 {
-	char		c;
-	int		bind;
-	long int	ltype;
-	uint32_t	flags;
-	uint32_t	type;
+	char			c;
+	int				bind;
+	long int		ltype;
+	uint32_t		flags;
+	uint32_t		type;
 	unsigned char	info;
-	Elf32_Half	shndx;
+	Elf32_Half		shndx;
 }			t_trente;
 
 typedef struct s_soixante
 {
-	char		c;
-	int		bind;
-	long int	ltype;
-	uint64_t	flags;
-	uint64_t	type;
+	char			c;
+	int				bind;
+	long int		ltype;
+	uint64_t		flags;
+	uint64_t		type;
 	unsigned char	info;
-	Elf64_Half	shndx;
+	Elf64_Half		shndx;
 }			t_soixante;
 
 void			*ft_memalloc(size_t size);
 char			*ft_strdup(const char *s1);
 char			*namer(char *p);
-int			getelf(const char *ptr);
+int				getelf(const char *ptr);
 void			grab(const char *ptr, t_elf fle);
-unsigned long		ge(char *t);
+unsigned long	ge(char *t);
 char			lo(char t);
-int			place(char *s1, char *s2);
+int				place(char *s1, char *s2);
 void			swap(t_tab *e, unsigned long j);
-unsigned long		getsize(t_tab *e);
+unsigned long	getsize(t_tab *e);
 void			zeze(unsigned long *a, unsigned long *h);
 Elf32_Sym		*getsym(t_elf fle, Elf32_Shdr *ph, unsigned int y);
 t_tab			symo(t_elf fle, Elf32_Sym sys, Elf32_Shdr *ph);
@@ -93,13 +93,13 @@ void			ar(t_elf fle, int i);
 void			ft_64(t_elf fle, int y);
 char			sletter(t_elf fle, Elf64_Sym *sys);
 char			letter(t_elf fle, Elf32_Sym *sys);
-int			affiche(t_tab *c, int ii);
+int				affiche(t_tab *c, int ii);
 void			ft_32(t_elf fle, int y);
-int			ft_help(void);
+int				ft_help(void);
 void			ft_nm(char *a);
 void			trie(t_tab *e);
-int			verif(t_elf *e);
-int			endian(t_elf *e);
-int			systems(t_elf *e);
-int			ft_strncmp(const char *s1, const char *s2, size_t n);
+int				verif(t_elf *e);
+int				endian(t_elf *e);
+int				systems(t_elf *e);
+int				ft_strncmp(const char *s1, const char *s2, size_t n);
 #endif

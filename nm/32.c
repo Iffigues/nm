@@ -6,7 +6,7 @@
 /*   By: bordenoy <bordenoy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 11:47:33 by bordenoy          #+#    #+#             */
-/*   Updated: 2022/03/26 12:08:35 by bordenoy         ###   ########.fr       */
+/*   Updated: 2022/04/03 20:29:55 by bordenoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static int	symb32(t_elf fle, Elf32_Shdr *ph, int y)
 
 Elf32_Shdr	*getsh( unsigned char *ptr, Elf32_Ehdr *eh)
 {
-	int	i;
+	int			i;
 	Elf32_Shdr	*f;
 
 	i = 0;
@@ -75,7 +75,7 @@ void	ft_32(t_elf fle, int y)
 	Elf32_Ehdr		*eh;
 	Elf32_Shdr		*ph;
 	unsigned char	*ptr;
-	int			i;
+	int				i;
 
 	i = 0;
 	eh = (Elf32_Ehdr *)fle.ptr;

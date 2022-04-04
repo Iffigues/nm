@@ -6,7 +6,7 @@
 /*   By: bordenoy <bordenoy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 14:43:32 by bordenoy          #+#    #+#             */
-/*   Updated: 2022/03/28 17:54:50 by bordenoy         ###   ########.fr       */
+/*   Updated: 2022/04/03 20:28:58 by bordenoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 int	symb64(t_elf fle, Elf64_Shdr *ph, int y)
 {
 	unsigned int	sym;
-	Elf64_Sym	*sys;
-	t_tab		*e;
+	Elf64_Sym		*sys;
+	t_tab			*e;
 
 	sym = ph->sh_size / sizeof(Elf64_Sym);
 	sys = getsym64(fle, ph, sym);
@@ -40,7 +40,7 @@ int	symb64(t_elf fle, Elf64_Shdr *ph, int y)
 
 Elf64_Shdr	*getsh64( unsigned char *ptr, Elf64_Ehdr *eh)
 {
-	int	i;
+	int			i;
 	Elf64_Shdr	*f;
 
 	i = 0;
@@ -70,10 +70,10 @@ static void	fini(t_elf fle, int y)
 
 void	ft_64(t_elf fle, int y)
 {
-	Elf64_Ehdr	*eh;
-	Elf64_Shdr	*ph;
+	Elf64_Ehdr		*eh;
+	Elf64_Shdr		*ph;
 	unsigned char	*ptr;
-	int		i;
+	int				i;
 
 	i = 0;
 	eh = (Elf64_Ehdr *)fle.ptr;

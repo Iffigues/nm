@@ -6,7 +6,7 @@
 /*   By: bordenoy <bordenoy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 18:25:13 by bordenoy          #+#    #+#             */
-/*   Updated: 2022/03/30 18:25:36 by bordenoy         ###   ########.fr       */
+/*   Updated: 2022/04/03 20:32:02 by bordenoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,10 @@ int	place(char *s1, char *s2)
 
 void	swap(t_tab *e, unsigned long j)
 {
-	t_tab		k;
+	t_tab			k;
 	unsigned long	m;
 	unsigned long	f;
-	int		h;
+	int				h;
 
 	m = ge(e[j + 1].name);
 	f = ge(e[j].name);

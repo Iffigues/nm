@@ -6,13 +6,13 @@
 /*   By: bordenoy <bordenoy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 22:32:25 by bordenoy          #+#    #+#             */
-/*   Updated: 2022/03/31 22:33:02 by bordenoy         ###   ########.fr       */
+/*   Updated: 2022/04/03 20:33:17 by bordenoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_nm.h"
 
-int	ft_help()
+int	ft_help(void)
 {
 	ft_printf("./ft_nm <arg>");
 	return (EXIT_FAILURE);

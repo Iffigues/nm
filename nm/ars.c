@@ -6,7 +6,7 @@
 /*   By: bordenoy <bordenoy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 00:36:01 by bordenoy          #+#    #+#             */
-/*   Updated: 2022/03/31 00:36:48 by bordenoy         ###   ########.fr       */
+/*   Updated: 2022/04/03 20:30:50 by bordenoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ char	*ft_strdup(const char *s1)
 
 char	*namer(char *p)
 {
-	int	i;
+	int		i;
 	char	*r;
 
 	i = 0;

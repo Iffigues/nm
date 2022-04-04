@@ -6,7 +6,7 @@
 /*   By: bordenoy <bordenoy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 01:06:32 by bordenoy          #+#    #+#             */
-/*   Updated: 2022/03/31 01:10:58 by bordenoy         ###   ########.fr       */
+/*   Updated: 2022/04/03 20:16:32 by bordenoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	getstat(t_elf fle)
 
 void	ft_nm(char *a)
 {
-	int	fd;
+	int		fd;
 	t_elf	fle;
 
 	fd = open(a, O_RDONLY);

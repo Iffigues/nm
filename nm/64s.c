@@ -6,7 +6,7 @@
 /*   By: bordenoy <bordenoy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 00:53:26 by bordenoy          #+#    #+#             */
-/*   Updated: 2022/03/31 01:04:24 by bordenoy         ###   ########.fr       */
+/*   Updated: 2022/04/03 20:27:53 by bordenoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 Elf64_Sym	*getsym64(t_elf fle, Elf64_Shdr *ph, unsigned int y)
 {
-	Elf64_Sym	*z;
+	Elf64_Sym		*z;
 	unsigned int	i;
-	Elf64_Sym	p;
+	Elf64_Sym		p;
 
 	z = (Elf64_Sym *)malloc(sizeof(Elf64_Sym) * y);
 	if (z == NULL)
@@ -51,8 +51,8 @@ t_tab	symo64(t_elf fle, Elf64_Sym sys, Elf64_Shdr *ph)
 t_tab	*gettab64(unsigned long sym, Elf64_Sym *sys, t_elf fle, Elf64_Shdr *ph)
 {
 	unsigned long	l;
-	int	a;
-	t_tab	*t;
+	int				a;
+	t_tab			*t;
 
 	l = 0;
 	t = (t_tab *)malloc(sizeof(t_tab) * sym);
@@ -85,7 +85,7 @@ static t_tab	*fi(t_tab *t, unsigned long x, t_tab *e)
 
 t_tab	*nettoie64(t_tab *e, unsigned long sym, unsigned long h)
 {
-	t_tab	*t;
+	t_tab			*t;
 	unsigned long	x;
 
 	x = 0;

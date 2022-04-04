@@ -6,7 +6,7 @@
 /*   By: bordenoy <bordenoy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 00:43:41 by bordenoy          #+#    #+#             */
-/*   Updated: 2022/03/31 00:53:01 by bordenoy         ###   ########.fr       */
+/*   Updated: 2022/04/03 20:26:20 by bordenoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 Elf32_Sym	*getsym(t_elf fle, Elf32_Shdr *ph, unsigned int y)
 {
-	Elf32_Sym	*z;
-	Elf32_Sym	p;
+	Elf32_Sym		*z;
+	Elf32_Sym		p;
 	unsigned int	i;
 
 	z = (Elf32_Sym *)malloc(sizeof(Elf32_Sym) * y);
@@ -50,8 +50,8 @@ t_tab	symo(t_elf fle, Elf32_Sym sys, Elf32_Shdr *ph)
 t_tab	*gettab(unsigned long sym, Elf32_Sym *sys, t_elf fle, Elf32_Shdr *ph)
 {
 	unsigned long	l;
-	int	a;
-	t_tab	*t;
+	int				a;
+	t_tab			*t;
 
 	l = 0;
 	t = (t_tab *)malloc(sizeof(t_tab) * sym);
@@ -84,7 +84,7 @@ static t_tab	*fi(t_tab *t, unsigned long x, t_tab *e)
 
 t_tab	*nettoie(t_tab *e, unsigned long sym, unsigned long h)
 {
-	t_tab	*t;
+	t_tab			*t;
 	unsigned long	x;
 
 	x = 0;
