@@ -6,15 +6,15 @@
 /*   By: bordenoy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 20:31:00 by bordenoy          #+#    #+#             */
-/*   Updated: 2022/04/03 19:45:40 by bordenoy         ###   ########.fr       */
+/*   Updated: 2019/02/18 20:23:10 by bordenoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_size(unsigned int a)
+int		ft_size(unsigned int a)
 {
-	int	y;
+	int y;
 
 	y = 1;
 	while (--a > 1)
@@ -24,25 +24,21 @@ int	ft_size(unsigned int a)
 
 void	ft_fl_base(long long a, char *b, t_gob opt)
 {
-	int	len;
+	int len;
 
 	len = ft_strlen(b);
 	if (a / len)
 		ft_fl_base(a / len, b, opt);
-	ft_add(opt, b[abss(a) % len]);
+	ft_add(opt, b[ABS(a) % len]);
 }
 
-int	float_count(long long a)
+int		float_count(long long a)
 {
 	int	b;
 
 	b = 1;
-	a /= 10;
-	while (a)
-	{
-		a /= 10;
+	while (a /= 10)
 		b++;
-	}
 	return (b);
 }
 
@@ -55,7 +51,7 @@ char	ft_floatzero(t_gob opt)
 
 void	float_optafter(long long a, t_gob opt)
 {
-	int	i;
+	int i;
 
 	i = (opt.opt.precision > 0) + opt.opt.precision;
 	i += float_count(a);

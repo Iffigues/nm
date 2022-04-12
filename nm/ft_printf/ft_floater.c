@@ -6,7 +6,7 @@
 /*   By: bordenoy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/13 15:37:59 by bordenoy          #+#    #+#             */
-/*   Updated: 2022/04/03 18:46:46 by bordenoy         ###   ########.fr       */
+/*   Updated: 2019/02/21 15:47:53 by bordenoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	float_opt(long long a, t_gob opt)
 {
-	int	i;
+	int i;
 
 	i = (opt.opt.precision > 0) + opt.opt.precision;
 	i += float_count(a);
@@ -31,14 +31,14 @@ void	float_opt(long long a, t_gob opt)
 
 void	aff_float(long long a, long long b, t_gob opt)
 {
-	int	g;
-	int	f;
+	int g;
+	int f;
 
 	g = ft_size(opt.opt.precision + 1);
 	f = (b % 10 > 4);
 	if (opt.opt.precision == 0)
 		a += f;
-	ft_fl_base(abss(a), "0123456789", opt);
+	ft_fl_base(ABS(a), "0123456789", opt);
 	if ((opt.opt.opt) & 2 && (opt.opt.precision == 0))
 		ft_add(opt, '.');
 	if (opt.opt.precision > 0)
@@ -55,7 +55,7 @@ void	aff_float(long long a, long long b, t_gob opt)
 
 void	ft_nullf(long long m, long double a, t_gob opt)
 {
-	int	i;
+	int i;
 
 	i = 0;
 	while (i < 6)
@@ -68,7 +68,7 @@ void	ft_nullf(long long m, long double a, t_gob opt)
 		}
 		i++;
 	}
-	ft_fl_base(abss(m), "0123456789", opt);
+	ft_fl_base(ABS(m), "0123456789", opt);
 }
 
 void	ft_floater(long double hallo, t_gob opt)

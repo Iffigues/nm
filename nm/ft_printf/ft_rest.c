@@ -6,7 +6,7 @@
 /*   By: bordenoy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 15:46:03 by bordenoy          #+#    #+#             */
-/*   Updated: 2022/04/03 19:36:45 by bordenoy         ###   ########.fr       */
+/*   Updated: 2019/02/21 20:41:33 by bordenoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,15 @@
 
 void	aff_rest(long long a, t_gob opt)
 {
-	int	i;
+	int i;
 
 	i = 0;
 	if (a == 0)
 		i = 1;
-	a /= 10;
-	while (a)
-	{
-		a /= 10;
+	while (a /= 10)
 		i++;
-	}
-	while (i < opt.opt.precision)
-	{
-		i++;
+	while (i++ < opt.opt.precision)
 		ft_add(opt, '0');
-	}
 }
 
 t_gob	ft_ar(t_gob opt, unsigned long long b)

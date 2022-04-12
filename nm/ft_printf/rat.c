@@ -6,7 +6,7 @@
 /*   By: bordenoy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/10 19:15:13 by bordenoy          #+#    #+#             */
-/*   Updated: 2022/04/03 19:43:08 by bordenoy         ###   ########.fr       */
+/*   Updated: 2022/04/12 17:42:52 by bordenoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ char	opts(t_gob opt, int nb)
 
 size_t	ft_strlen(const char *c)
 {
-	int	y;
+	int y;
 
 	y = 0;
 	while (c[y])
@@ -52,8 +52,7 @@ void	ft_putster(va_list ap, t_gob opt)
 	char	*nbr;
 
 	y = 0;
-	nbr = va_arg(ap, char *);
-	if (!nbr)
+	if (!((nbr = va_arg(ap, char *))))
 		return (ft_nulls(opt));
 	u = (opt.opt.opt & 4);
 	if (nbr && *nbr)

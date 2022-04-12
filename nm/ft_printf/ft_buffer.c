@@ -6,25 +6,25 @@
 /*   By: bordenoy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/05 19:10:49 by bordenoy          #+#    #+#             */
-/*   Updated: 2022/04/03 18:45:57 by bordenoy         ###   ########.fr       */
+/*   Updated: 2019/02/25 16:55:28 by bordenoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	aff(char *b, int bb)
+int		aff(char *b, int bb)
 {
 	return (ft_putstrlensize(b, bb));
 }
 
-int	ft_getsize(char *b, int c)
+int		ft_getsize(char *b, int c)
 {
 	return (b[sizeof(int) * c]);
 }
 
-int	end(t_gob opt)
+int		end(t_gob opt)
 {
-	int	a;
+	int a;
 
 	a = 0;
 	if (opt.b)
@@ -42,6 +42,8 @@ void	ft_add(t_gob opt, const char c)
 	if (*opt.b == BUFF_SIZE)
 	{
 		*(int *)&opt.b[sizeof(int)] += aff(&opt.b[sizeof(int)], *opt.b);
-		*(int *)opt.b = 0;
+		*(int*)opt.b = 0;
 	}
 }
+//char b[sizeof(int)];
+//*(int *)b = 10;

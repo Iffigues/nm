@@ -6,7 +6,7 @@
 /*   By: bordenoy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/29 19:10:27 by bordenoy          #+#    #+#             */
-/*   Updated: 2022/04/03 18:48:40 by bordenoy         ###   ########.fr       */
+/*   Updated: 2019/02/21 20:04:45 by bordenoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	ft_putnbr_unsigned(va_list ap, t_gob opt)
 	b = va_arg(ap, long long);
 	c = opt.opt.conversion;
 	if (opt.opt.conversion == 'o' && b == 0
-		&& opt.opt.precision == 0 && opt.opt.opt & 2)
+	&& opt.opt.precision == 0 && opt.opt.opt & 2)
 		opt.opt.largeur--;
 	if (opt.opt.taille == 0)
 		a = ft_retu((unsigned int)b, my_hexa(c), 1, opt);

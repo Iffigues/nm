@@ -6,13 +6,13 @@
 /*   By: bordenoy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 14:32:43 by bordenoy          #+#    #+#             */
-/*   Updated: 2022/04/03 20:13:10 by bordenoy         ###   ########.fr       */
+/*   Updated: 2019/02/18 20:23:49 by bordenoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_typemoi(long double a)
+int		ft_typemoi(long double a)
 {
 	return ((1.0 / a) == (-1.0 / 0.0));
 }
@@ -28,7 +28,7 @@ void	ft_signe(t_gob opt, long double a)
 
 void	ft_inf(t_gob opt, char *v, int a)
 {
-	a = a + ((opt.opt.opt & 16) || (opt.opt.opt & 8));
+	a += (opt.opt.opt & 16) || (opt.opt.opt & 8);
 	while (!(opt.opt.opt & 4) && ((int)opt.opt.largeur > a))
 	{
 		ft_add(opt, ' ');
@@ -47,7 +47,7 @@ void	ft_inf(t_gob opt, char *v, int a)
 	}
 }
 
-int	ft_nan(long double a, t_gob opt)
+int		ft_nan(long double a, t_gob opt)
 {
 	if (a != a)
 	{

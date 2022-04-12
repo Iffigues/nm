@@ -6,13 +6,13 @@
 /*   By: bordenoy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/21 15:12:17 by bordenoy          #+#    #+#             */
-/*   Updated: 2022/04/03 18:52:11 by bordenoy         ###   ########.fr       */
+/*   Updated: 2019/02/21 18:10:54 by bordenoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	hexa(t_gob opt, char c, int g, int a)
+int		hexa(t_gob opt, char c, int g, int a)
 {
 	if ((c == 'x' && (opt.opt.opt & 2)) || c == 'p')
 	{
@@ -41,14 +41,14 @@ int	hexa(t_gob opt, char c, int g, int a)
 	return (0);
 }
 
-int	or(int a, int b, int g, t_gob opt)
+int		or(int a, int b, int g, t_gob opt)
 {
 	if ((b & 16) && (g > 0) && (opt.opt.precision > 0))
 		a = 0;
 	return (a);
 }
 
-int	signe(t_gob opt, int b, int c)
+int		signe(t_gob opt, int b, int c)
 {
 	if (c == -1)
 		return (0);
@@ -71,7 +71,7 @@ int	signe(t_gob opt, int b, int c)
 
 void	affre(t_gob opt, int a, int b)
 {
-	char	pp;
+	char		pp;
 
 	pp = opts(opt, b);
 	if (b >= 0 && ((opt.opt.opt & 8) || (opt.opt.opt & 16)))
@@ -100,7 +100,7 @@ void	affre(t_gob opt, int a, int b)
 
 void	offre(t_gob opt, int a, int b)
 {
-	int	gg;
+	int gg;
 
 	opt.opt.largeur -= signe(opt, b, 0);
 	gg = hexa(opt, opt.opt.conversion, 0, 1);
@@ -111,6 +111,6 @@ void	offre(t_gob opt, int a, int b)
 		opt.opt.largeur--;
 	if (opt.opt.opt & 4)
 		while (opt.opt.largeur > opt.opt.precision
-			&& opt.opt.largeur > or(a, opt.opt.opt, b, opt))
+		&& opt.opt.largeur > or(a, opt.opt.opt, b, opt))
 			opt.opt.largeur -= moin(opt, ' ');
 }
