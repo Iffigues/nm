@@ -6,7 +6,7 @@
 /*   By: bordenoy <bordenoy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 01:06:32 by bordenoy          #+#    #+#             */
-/*   Updated: 2022/04/03 20:16:32 by bordenoy         ###   ########.fr       */
+/*   Updated: 2022/04/13 14:53:03 by bordenoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,10 @@ void	failed(char *a)
 
 void	getstat(t_elf fle)
 {
-	if (!verif(&fle))
-		return (failed("not elf"));
+	if (!verif(&fle)) {
+		ft_printf("./ft_nm: %s", fle.name);
+		return (failed(": file format not recognized\n"));
+	}
 	if (fle.sys != 3)
 	{
 		if (!endian(&fle))
@@ -43,17 +45,20 @@ void	ft_nm(char *a)
 	t_elf	fle;
 
 	fd = open(a, O_RDONLY);
-	if (fd < 0)
-		return (failed("error on open file\n"));
+	if (fd < 0) {
+		ft_printf("./ft_nm: \'%s\': ", a);
+		return (failed("No such file\n"));
+	}
 	if ((fstat(fd, &fle.buf)) < 0)
 		return (failed("error with fstats"));
 	fle.ptr = mmap(0, fle.buf.st_size, PROT_READ, MAP_PRIVATE, fd, 0);
 	if (fle.ptr == MAP_FAILED)
-		return (failed("mmap failed"));
+		return ;
 	fle.name = a;
 	fle.len = fle.buf.st_size;
-	getstat(fle);
+	if (fle.len > 0)
+		getstat(fle);
 	if (munmap((void *)fle.ptr, fle.buf.st_size) < 0)
-		failed("munmap failed");
+	{}
 	close(fd);
 }

@@ -6,11 +6,12 @@
 /*   By: bordenoy <bordenoy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 00:53:26 by bordenoy          #+#    #+#             */
-/*   Updated: 2022/04/03 20:27:53 by bordenoy         ###   ########.fr       */
+/*   Updated: 2022/04/12 21:50:45 by bordenoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_nm.h"
+
 
 Elf64_Sym	*getsym64(t_elf fle, Elf64_Shdr *ph, unsigned int y)
 {
@@ -42,8 +43,12 @@ t_tab	symo64(t_elf fle, Elf64_Sym sys, Elf64_Shdr *ph)
 	t.vs = 1;
 	t.error = 0;
 	t.t = sletter(fle, &sys);
-	t.exa = fle.sihdr[sys.st_shndx].sh_addr;
 	t.exa = sys.st_value;
+	if (fle.sihdr[ph->sh_link].sh_offset + sys.st_name > fle.len)
+	{
+		t.error = -1;
+		return (t);
+	}
 	t.name = (char *)fle.ptr + fle.sihdr[ph->sh_link].sh_offset + sys.st_name;
 	return (t);
 }
