@@ -6,7 +6,7 @@
 /*   By: bordenoy <bordenoy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 11:47:33 by bordenoy          #+#    #+#             */
-/*   Updated: 2022/04/03 20:29:55 by bordenoy         ###   ########.fr       */
+/*   Updated: 2022/04/13 23:22:51 by bordenoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ Elf32_Shdr	*getsh( unsigned char *ptr, Elf32_Ehdr *eh)
 
 	i = 0;
 	f = NULL;
-	f = (Elf32_Shdr *)malloc(sizeof(Elf32_Shdr) * eh->e_shoff);
+	f = (Elf32_Shdr *)malloc(sizeof(Elf32_Shdr) * /*eh->e_shoff*/ eh->e_shnum);
 	if (f == NULL)
 		return (NULL);
 	while (i < eh->e_shnum)
@@ -66,7 +66,7 @@ void	frey(t_elf fle)
 void	fini(t_elf fle, int y)
 {
 	if (!y)
-		ft_printf("No Sym\nb");
+		ft_printf("./ft_nm: %s: no symbols\n", fle.name);
 	free(fle.shdr);
 }
 
