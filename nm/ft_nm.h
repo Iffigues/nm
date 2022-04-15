@@ -6,7 +6,7 @@
 /*   By: bordenoy <bordenoy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 01:12:48 by bordenoy          #+#    #+#             */
-/*   Updated: 2022/04/04 14:39:56 by bordenoy         ###   ########.fr       */
+/*   Updated: 2022/04/14 22:07:29 by bordenoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <sys/stat.h>
 # include <sys/mman.h>
 # include "ft_printf/ft_printf.h"
+# include <stdio.h>
 
 typedef struct s_elf
 {
