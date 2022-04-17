@@ -6,7 +6,7 @@
 /*   By: bordenoy <bordenoy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 00:22:07 by bordenoy          #+#    #+#             */
-/*   Updated: 2022/04/14 22:16:04 by bordenoy         ###   ########.fr       */
+/*   Updated: 2022/04/17 02:32:13 by bordenoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,9 @@ static char	choose(t_soixante t)
 		t.c = alphe('D', 'd', t.ltype == STB_GLOBAL);
 	else if (t.type == SHT_PREINIT_ARRAY)
 		t.c = 'D';
-	else if (t.type == SHT_PROGBITS || t.flags == (SHF_ALLOC | SHF_EXECINSTR))
+	else if (t.type == SHT_PROGBITS || t.flags == (SHF_ALLOC | SHF_EXECINSTR)) {
 		t.c = alphe('T', 't', t.bind == STB_LOCAL);
+	}
 	else if (t.type == SHT_INIT_ARRAY || t.type == SHT_FINI_ARRAY)
 		t.c = alphe('t', 't', t.bind == STB_LOCAL);
 	return (t.c);
