@@ -6,18 +6,31 @@
 /*   By: bordenoy <bordenoy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 18:25:13 by bordenoy          #+#    #+#             */
-/*   Updated: 2022/04/13 17:21:35 by bordenoy         ###   ########.fr       */
+/*   Updated: 2022/04/16 18:16:38 by bordenoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_nm.h"
+
+static int mama(char t) {
+
+	if (t >= 'A' && t <= 'Z')
+		return 0;
+	if (t >= 'a' && t <= 'z')
+		return 0;
+	if (t >= '0' && t <= '9')
+		return 0;
+	if (t == '$')
+		return 0;
+	return 1;
+}
 
 unsigned long	ge(char *t)
 {
 	unsigned long	l;
 
 	l = 0;
-	while (t[l] && (t[l] == '_' || t[l] == '@'))
+	while (t[l] && mama(t[l]))
 		l++;
 	return (l);
 }
@@ -35,14 +48,14 @@ int	place(char *s1, char *s2)
 	{
 		s1++;
 		s2++;
-		while (s1 && (*s1 == '_' || *s1 == '@'))
+		while (*s1 && mama(*s1))
 			s1++;
-		while (s2 && (*s2 == '_' || *s2 =='@'))
+		while (*s2 && mama(*s2))
 			s2++;
 	}
-	while (s1 && (*s1 == '_' || *s1 == '@'))
+	while (*s1 && (mama(*s1)))
 		s1++;
-	while (s2 && (*s2 == '_' || *s2 =='@'))
+	while (*s2 && (mama(*s2)))
 		s2++;
 	return (lo(*s1) - lo(*s2));
 }
