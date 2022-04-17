@@ -6,7 +6,7 @@
 /*   By: bordenoy <bordenoy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 00:21:38 by bordenoy          #+#    #+#             */
-/*   Updated: 2022/04/14 22:16:27 by bordenoy         ###   ########.fr       */
+/*   Updated: 2022/04/17 02:55:07 by bordenoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static char	choose(t_trente t)
 		t.c = alphe('C', 'c', STB_LOCAL);
 	else if (t.type == SHT_NOBITS && t.flags == (SHF_ALLOC | SHF_WRITE))
 		t.c = alphe('B', 'b', t.bind == STB_LOCAL);
-	else if (t.type == SHT_PROGBITS && t.flags == SHF_ALLOC)
+	else if (t.type == SHT_PROGBITS && (t.flags == SHF_ALLOC || t.flags == 18))
 		t.c = alphe('R', 'r', t.bind == STB_LOCAL);
 	else if (t.type == SHT_PROGBITS && t.flags == (SHF_ALLOC | SHF_WRITE))
 		t.c = alphe('D', 'd', t.info == STB_GLOBAL);

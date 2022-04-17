@@ -6,7 +6,7 @@
 /*   By: bordenoy <bordenoy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 00:53:26 by bordenoy          #+#    #+#             */
-/*   Updated: 2022/04/14 22:09:32 by bordenoy         ###   ########.fr       */
+/*   Updated: 2022/04/17 02:52:00 by bordenoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ t_tab	symo64(t_elf fle, Elf64_Sym sys, Elf64_Shdr *ph)
 		return (t);
 	}
 	t.name = (char *)fle.ptr + fle.sihdr[ph->sh_link].sh_offset + sys.st_name;
+//	if (ft_strncmp("_IO_stdin_used", t.name, ft_strlen("_IO_stdin_used")) == 0)
+//		exit(0);
 	return (t);
 }
 
