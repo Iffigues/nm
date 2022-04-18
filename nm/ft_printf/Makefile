@@ -6,7 +6,7 @@
 #    By: bordenoy <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/08 12:37:32 by bordenoy          #+#    #+#              #
-#    Updated: 2022/04/12 17:40:54 by bordenoy         ###   ########.fr        #
+#    Updated: 2019/02/21 15:47:19 by bordenoy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,6 @@ LDLIBS=-lft
 HDDIRS=-I 
 
 SRC=	ft_bzero.c					\
-		ft_abs.c				\
 		ft_memset.c					\
  		ft_putnbr.c					\
 		ft_atoi.c					\

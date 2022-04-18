@@ -6,7 +6,7 @@
 /*   By: bordenoy <bordenoy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 00:43:41 by bordenoy          #+#    #+#             */
-/*   Updated: 2022/04/18 20:21:09 by bordenoy         ###   ########.fr       */
+/*   Updated: 2022/04/18 22:31:51 by bordenoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ t_tab	symo(t_elf fle, Elf32_Sym sys, Elf32_Shdr *ph)
 		t.error = -1;
 		return (t);
 	}
-	if (!term(fle, fle.sihdr[ph->sh_link].sh_offset + sys.st_name)) {
+	if (!term(fle, fle.shdr[ph->sh_link].sh_offset + sys.st_name)) {
 		t.error = -1;
 		return (t);
 	}

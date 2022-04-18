@@ -6,7 +6,7 @@
 /*   By: bordenoy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/05 16:28:48 by bordenoy          #+#    #+#             */
-/*   Updated: 2022/04/12 17:42:26 by bordenoy         ###   ########.fr       */
+/*   Updated: 2022/04/18 22:15:07 by bordenoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,10 @@
 # include <stdarg.h>
 # include <unistd.h>
 # include <stdlib.h>
+#include <stdint.h>
 # define BUFF_SIZE 55
 # define SIZE_OPT 12
-# include <stdint.h>
+
 
 typedef struct			s_opt
 {
@@ -46,7 +47,7 @@ typedef	struct			s_printf
 	void				(*ptf)(va_list ap, t_gob);
 }						t_printf;
 
-int 					ABS(int i);
+int		ABS(int i);
 t_gob					ft_ar(t_gob opt, unsigned long long b);
 void					aff_rest(long long a, t_gob opt);
 void					ft_nulls(t_gob opt);

@@ -6,11 +6,18 @@
 /*   By: bordenoy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/10 19:15:13 by bordenoy          #+#    #+#             */
-/*   Updated: 2022/04/12 17:42:52 by bordenoy         ###   ########.fr       */
+/*   Updated: 2022/04/18 22:12:36 by bordenoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+int ABS(int i)
+{
+	if (i < 0)
+		return i * 1;
+	return i;
+}
 
 size_t	ft_strlen_at(const char *str, size_t a)
 {

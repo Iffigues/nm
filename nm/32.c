@@ -6,7 +6,7 @@
 /*   By: bordenoy <bordenoy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 11:47:33 by bordenoy          #+#    #+#             */
-/*   Updated: 2022/04/18 21:51:09 by bordenoy         ###   ########.fr       */
+/*   Updated: 2022/04/18 22:18:06 by bordenoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,10 @@ void	frey(t_elf fle)
 
 void	fini(t_elf fle, int y)
 {
-	if (!y)
-		ft_printf("./ft_nm: %s: no symbols\n", fle.name);
+	if (!y) {
+		ft_printf("./ft_nm: %s", fle.name);
+		ft_printf(": no symbols\n");
+	}
 	free(fle.shdr);
 }
 
