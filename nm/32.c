@@ -6,7 +6,7 @@
 /*   By: bordenoy <bordenoy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 11:47:33 by bordenoy          #+#    #+#             */
-/*   Updated: 2022/04/13 23:22:51 by bordenoy         ###   ########.fr       */
+/*   Updated: 2022/04/18 21:51:09 by bordenoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,16 @@ void	ft_32(t_elf fle, int y)
 
 	i = 0;
 	eh = (Elf32_Ehdr *)fle.ptr;
-	if ((eh->e_shoff + (sizeof(Elf32_Shdr) * eh->e_shnum)) > fle.len)
+	if (!eh->e_shnum) {
+		ft_printf("./ft_nm: %s", fle.name);
+		ft_printf(": file format not recognized\n");
 		return ;
+	}
+	if ((eh->e_shoff + (sizeof(Elf32_Shdr) * eh->e_shnum)) > fle.len) {
+		ft_printf("./ft_nm: %s", fle.name);
+		ft_printf(": file truncated\n");
+		return ;
+	}
 	ptr = (unsigned char *)fle.ptr + eh->e_shoff;
 	fle.shdr = getsh(ptr, eh);
 	if (fle.shdr == NULL)

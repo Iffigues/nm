@@ -6,7 +6,7 @@
 /*   By: bordenoy <bordenoy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 01:06:32 by bordenoy          #+#    #+#             */
-/*   Updated: 2022/04/13 14:53:03 by bordenoy         ###   ########.fr       */
+/*   Updated: 2022/04/18 20:22:43 by bordenoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,9 @@ void	getstat(t_elf fle)
 			return (failed("not 64_32"));
 		if (fle.sys == 1)
 			ft_32(fle, 0);
-		if (fle.sys == 2)
+		if (fle.sys == 2) {
 			ft_64(fle, 0);
+		}
 	}
 	else
 		ar(fle, 0);

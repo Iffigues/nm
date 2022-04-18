@@ -6,7 +6,7 @@
 /*   By: bordenoy <bordenoy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 01:12:48 by bordenoy          #+#    #+#             */
-/*   Updated: 2022/04/14 22:07:29 by bordenoy         ###   ########.fr       */
+/*   Updated: 2022/04/18 20:14:57 by bordenoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ typedef struct s_soixante
 	Elf64_Half		shndx;
 }			t_soixante;
 
+
+int term(t_elf fle, unsigned int size);
 void			*ft_memalloc(size_t size);
 char			*ft_strdup(const char *s1);
 char			*namer(char *p);

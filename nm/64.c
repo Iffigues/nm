@@ -6,7 +6,7 @@
 /*   By: bordenoy <bordenoy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 14:43:32 by bordenoy          #+#    #+#             */
-/*   Updated: 2022/04/13 23:21:32 by bordenoy         ###   ########.fr       */
+/*   Updated: 2022/04/18 21:51:53 by bordenoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ Elf64_Shdr	*getsh64( unsigned char *ptr, Elf64_Ehdr *eh)
 
 static void	frey(t_elf fle)
 {
-	free(fle.shdr);
+	free(fle.sihdr);
 }
 
 static void	fini(t_elf fle, int y)
@@ -77,8 +77,16 @@ void	ft_64(t_elf fle, int y)
 
 	i = 0;
 	eh = (Elf64_Ehdr *)fle.ptr;
-	if ((eh->e_shoff + (sizeof(Elf64_Shdr) * eh->e_shnum)) > fle.len)
+	if (!eh->e_shnum) {
+		ft_printf("./ft_nm: %s", fle.name);
+		ft_printf(": file format not recognized\n");
 		return ;
+	}
+	if ((eh->e_shoff + (sizeof(Elf64_Shdr) * eh->e_shnum)) > fle.len) {
+		ft_printf("./ft_nm: %s", fle.name);
+		ft_printf(": file truncated\n");
+		return ;
+	}
 	ptr = (unsigned char *)fle.ptr + eh->e_shoff;
 	fle.sihdr = getsh64(ptr, eh);
 	if (fle.sihdr == NULL)
